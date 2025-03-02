@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data()
 public class CD extends Document {
@@ -19,6 +18,14 @@ public class CD extends Document {
     public CD(String titre, int nombreExemplaires,
               String artiste, String genre, int duree) {
         super(titre, nombreExemplaires);
+        this.artiste = artiste;
+        this.genre = genre;
+        this.duree = duree;
+    }
+
+    public CD(Integer id, String titre, int nombreExemplaires,
+              String artiste, String genre, int duree) {
+        super(id, titre, nombreExemplaires);
         this.artiste = artiste;
         this.genre = genre;
         this.duree = duree;

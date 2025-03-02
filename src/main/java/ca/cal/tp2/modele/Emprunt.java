@@ -15,7 +15,7 @@ public class Emprunt {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @OneToOne(mappedBy = "emprunt")
+    @OneToOne(mappedBy = "emprunt", cascade = CascadeType.ALL)
     private EmpruntDocument empruntDocument;
     private LocalDate dateEmprunt;
     private String status;

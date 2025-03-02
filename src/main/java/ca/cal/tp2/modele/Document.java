@@ -15,8 +15,6 @@ public abstract class Document {
     private Integer id;
     private String titre;
     private int nombreExemplaires;
-    @OneToOne(mappedBy = "document")
-    private EmpruntDocument empruntDocument;
 
     public Document(String titre, int nombreExemplaires) {
         this.titre = titre;

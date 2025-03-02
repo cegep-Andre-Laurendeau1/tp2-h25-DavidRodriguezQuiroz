@@ -17,6 +17,4 @@ public abstract class Utilisateur {
     private String nom;
     private String email;
     private String numTel;
-
-
 }

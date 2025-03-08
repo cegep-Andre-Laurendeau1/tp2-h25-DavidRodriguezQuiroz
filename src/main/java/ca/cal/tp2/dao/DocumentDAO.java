@@ -2,6 +2,10 @@ package ca.cal.tp2.dao;
 
 import ca.cal.tp2.modele.Document;
 
-public interface DocumentDAO {
-    void enregistrer(Document document);
+import java.util.List;
+
+public interface DocumentDAO<T> {
+    void enregistrer(T document);
+
+    List<T> rechercher(T document);
 }

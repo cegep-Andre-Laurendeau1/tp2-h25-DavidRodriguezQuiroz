@@ -10,5 +10,7 @@ public interface DocumentDAO<T> {
 
     List<T> rechercher(T document);
 
+    T rechercher(int id);
+
     T rechercherPar(int empDocId);
 }

@@ -8,5 +8,7 @@ import java.util.List;
 public interface EmpruntDAO {
     void enregistrer(Emprunt emprunt);
 
+    Emprunt rechercher(int id);
+
     List<Emprunt> retournerEmprunts(Emprunteur emprunteur);
 }

@@ -54,7 +54,8 @@ public class EmpruntDAOJPA extends GenericDAO<Emprunt> implements EmpruntDAO{
         query.setParameter("emprunteur", emprunteur);
         List<Emprunt> emprunts = query.getResultList();
 
-        emprunts.forEach((emprunt -> emprunt.setEmpruntDocument(empruntDocumentDAO.retourner(emprunt))));
+        if (!emprunts.isEmpty())
+         emprunts.forEach((emprunt -> emprunt.setEmpruntDocument(empruntDocumentDAO.retourner(emprunt))));
 
         entityManager.close();
         return emprunts;

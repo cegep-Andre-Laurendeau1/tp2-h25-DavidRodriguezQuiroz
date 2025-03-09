@@ -25,4 +25,9 @@ public class Emprunteur extends Utilisateur {
         this.emprunts = emprunts;
         this.amandes = amandes;
     }
+
+    public void ajouterEmprunt(Emprunt emprunt) {
+        this.emprunts.add(emprunt);
+        emprunt.setEmprunteur(this);
+    }
 }

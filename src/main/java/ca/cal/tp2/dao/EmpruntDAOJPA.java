@@ -59,4 +59,9 @@ public class EmpruntDAOJPA extends GenericDAO<Emprunt> implements EmpruntDAO{
         entityManager.close();
         return emprunts;
     }
+
+    @Override
+    protected Class<Emprunt> getClassType() {
+        return Emprunt.class;
+    }
 }

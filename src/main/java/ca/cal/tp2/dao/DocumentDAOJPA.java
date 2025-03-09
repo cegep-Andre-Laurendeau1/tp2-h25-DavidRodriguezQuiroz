@@ -21,6 +21,7 @@ public abstract class DocumentDAOJPA<T> extends GenericDAO<T> implements Documen
         return documents;
     }
 
+    @Override
     protected abstract Class<T> getClassType();
 
     protected abstract String getSql(T document);

@@ -11,4 +11,16 @@ public abstract class GenericDAO<T> {
 
         DBManager.finirTransaction(entityManager);
     }
+
+    public T rechercher(int id) {
+        EntityManager entityManager = DBManager.getEntityManager();
+
+        T entite = entityManager.find(getClassType(), id);
+
+        entityManager.close();
+
+        return entite;
+    }
+
+    protected abstract Class<T> getClassType();
 }

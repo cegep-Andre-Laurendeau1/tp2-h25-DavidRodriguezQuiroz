@@ -4,6 +4,7 @@ import ca.cal.tp2.LimiteSemaineEmprunt;
 import ca.cal.tp2.dao.DocumentDAO;
 import ca.cal.tp2.dao.EmpruntDAO;
 import ca.cal.tp2.dao.EmprunteurDAO;
+import ca.cal.tp2.dto.*;
 import ca.cal.tp2.modele.*;
 import lombok.AllArgsConstructor;
 
@@ -22,28 +23,35 @@ public class EmprunteurService {
         emprunteurDAO.enregistrer(emprunteur);
     }
 
-    public Emprunteur rechercher(int id) {
+    public EmprunteurDTO rechercher(int id) {
         Emprunteur emprunteur = emprunteurDAO.rechercher(id);
 
         if (emprunteur != null)
             emprunteur.setEmprunts(empruntDAO.retournerEmprunts(emprunteur));
 
-        return emprunteur;
+        return Emprunteur.toDTO(emprunteur);
     }
 
-    public List<Livre> rechercherLivres(Livre livre) {
-        return livreDAO.rechercher(livre);
+    public List<LivreDTO> rechercherLivres(LivreDTO livreDTO) {
+        List<Livre> livres = livreDAO.rechercher(Livre.toModele(livreDTO));
+        return Livre.toDTOs(livres);
     }
 
-    public List<CD> rechercherCDs(CD cd) {
-        return cdDAO.rechercher(cd);
+    public List<CdDTO> rechercherCDs(CdDTO cd) {
+        List<CD> cds = cdDAO.rechercher(CD.toModele(cd));
+        return CD.toDTOs(cds);
     }
 
-    public List<DVD> rechercherDVDs(DVD dvd) {
-        return dvdDAO.rechercher(dvd);
+    public List<DvdDTO> rechercherDVDs(DvdDTO dvd) {
+        List<DVD> dvds = dvdDAO.rechercher(DVD.toModele(dvd));
+        return DVD.toDTOs(dvds);
     }
 
-    public void emprunterDocument(Emprunteur emprunteur, Document document) {
+    public void emprunterDocument(EmprunteurDTO emprunteurDTO, DocumentDTO documentDTO) {
+        Emprunteur emprunteur = Emprunteur.toModele(emprunteurDTO);
+
+        Document document = Document.toModele(documentDTO);
+
         Emprunt emprunt = new Emprunt();
 
         EmpruntDocument empruntDocument = new EmpruntDocument();

@@ -1,5 +1,7 @@
 package ca.cal.tp2.modele;
 
+import ca.cal.tp2.dto.EmpruntDTO;
+import ca.cal.tp2.dto.EmpruntDocumentDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,4 +29,26 @@ public class EmpruntDocument {
     private LocalDate dateRetourActuelle;
     private LocalDate dateRetourPrevu;
     private String status;
+
+    public static EmpruntDocumentDTO toDTO(EmpruntDocument empruntDocument, EmpruntDTO empruntDTO) {
+        EmpruntDocumentDTO empruntDocumentDTO = new EmpruntDocumentDTO();
+        empruntDocumentDTO.setId(empruntDocument.getId());
+        empruntDocumentDTO.setDocumentDTO(Document.toDTO(empruntDocument.getDocument()));
+        empruntDocumentDTO.setEmpruntDTO(empruntDTO);
+        empruntDocumentDTO.setDateRetourActuelle(empruntDocument.getDateRetourActuelle());
+        empruntDocumentDTO.setDateRetourPrevu(empruntDocument.getDateRetourPrevu());
+        empruntDocumentDTO.setStatus(empruntDocument.getStatus());
+        return empruntDocumentDTO;
+    }
+
+    public static EmpruntDocument toModele(EmpruntDocumentDTO empruntDocumentDTO, Emprunt emprunt) {
+        EmpruntDocument empruntDocument = new EmpruntDocument();
+        empruntDocument.setId(empruntDocumentDTO.getId());
+        empruntDocument.setDocument(Document.toModele(empruntDocumentDTO.getDocumentDTO()));
+        empruntDocument.setEmprunt(emprunt);
+        empruntDocument.setDateRetourActuelle(empruntDocumentDTO.getDateRetourActuelle());
+        empruntDocument.setDateRetourPrevu(empruntDocumentDTO.getDateRetourPrevu());
+        empruntDocument.setStatus(empruntDocumentDTO.getStatus());
+        return empruntDocument;
+    }
 }

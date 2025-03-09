@@ -22,4 +22,9 @@ public class Emprunt {
     @ManyToOne
     @JoinColumn
     private Emprunteur emprunteur;
+
+    public void setEmpruntDocument(EmpruntDocument empruntDocument) {
+        this.empruntDocument = empruntDocument;
+        this.empruntDocument.setEmprunt(this);
+    }
 }

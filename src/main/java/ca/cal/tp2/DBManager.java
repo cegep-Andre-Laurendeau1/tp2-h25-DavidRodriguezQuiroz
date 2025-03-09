@@ -12,6 +12,17 @@ public class DBManager {
     public static EntityManager getEntityManager() {
         return EMF.createEntityManager();
     }
+
+    public static EntityManager commencerTransaction() {
+        EntityManager entityManager = EMF.createEntityManager();
+        entityManager.getTransaction().begin();
+        return entityManager;
+    }
+
+    public static void finirTransaction(EntityManager entityManager) {
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
 }
 
 

@@ -1,6 +1,5 @@
 package ca.cal.tp2.dao;
 
-import ca.cal.tp2.modele.Document;
 import ca.cal.tp2.modele.Livre;
 import jakarta.persistence.TypedQuery;
 
@@ -35,5 +34,10 @@ public class LivreDAOJPA extends DocumentDAOJPA<Livre> {
         query.setParameter("titre", "%" + livre.getTitre() + "%");
         query.setParameter("auteur", livre.getAuteur());
         query.setParameter("annee", livre.getAnneePublication());
+    }
+
+    @Override
+    protected String getNomTable() {
+        return "Livre";
     }
 }

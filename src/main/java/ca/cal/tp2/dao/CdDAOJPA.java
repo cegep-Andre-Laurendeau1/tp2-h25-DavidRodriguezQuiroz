@@ -33,4 +33,9 @@ public class CdDAOJPA extends DocumentDAOJPA<CD>{
         query.setParameter("titre", "%" + cd.getTitre() + "%");
         query.setParameter("artiste", cd.getArtiste());
     }
+
+    @Override
+    protected String getNomTable() {
+        return "CD";
+    }
 }

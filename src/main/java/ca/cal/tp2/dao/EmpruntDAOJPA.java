@@ -12,10 +12,16 @@ import java.util.List;
 
 public class EmpruntDAOJPA extends GenericDAO<Emprunt> implements EmpruntDAO{
 
+    private EmpruntDocumentDAO empruntDocumentDAO;
+
+    public EmpruntDAOJPA(EmpruntDocumentDAO empruntDocumentDAO) {
+        this.empruntDocumentDAO = empruntDocumentDAO;
+    }
+
     @Override
     public void enregistrer(Emprunt emprunt) {
         Document document = emprunt.getEmpruntDocument().getDocument();
-        System.out.println("sdasdad");
+
         if (exemplaireDisponible(document))
             super.enregistrer(emprunt);
     }
@@ -36,5 +42,21 @@ public class EmpruntDAOJPA extends GenericDAO<Emprunt> implements EmpruntDAO{
 
         Document premierDocumentRetourner = empruntDocuments.get(0).getDocument();
         return premierDocumentRetourner.getNombreExemplaires() > empruntDocuments.size();
+    }
+
+    @Override
+    public List<Emprunt> retournerEmprunts(Emprunteur emprunteur) {
+        EntityManager entityManager = DBManager.getEntityManager();
+
+        String sql = "SELECT e FROM Emprunt e WHERE e.emprunteur = :emprunteur";
+
+        TypedQuery<Emprunt> query = entityManager.createQuery(sql, Emprunt.class);
+        query.setParameter("emprunteur", emprunteur);
+        List<Emprunt> emprunts = query.getResultList();
+
+        emprunts.forEach((emprunt -> emprunt.setEmpruntDocument(empruntDocumentDAO.retourner(emprunt))));
+
+        entityManager.close();
+        return emprunts;
     }
 }

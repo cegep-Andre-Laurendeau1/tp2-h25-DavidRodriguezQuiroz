@@ -5,11 +5,10 @@ import jakarta.persistence.EntityManager;
 
 public abstract class GenericDAO<T> {
     public void enregistrer(T t) {
-        EntityManager entityManager = DBManager.getEntityManager();
-        entityManager.getTransaction().begin();
+        EntityManager entityManager = DBManager.commencerTransaction();
 
         entityManager.persist(t);
 
-        entityManager.getTransaction().commit();
+        DBManager.finirTransaction(entityManager);
     }
 }

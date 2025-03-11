@@ -1,5 +1,6 @@
 package ca.cal.tp2.dto;
 
+import ca.cal.tp2.modele.Emprunt;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,5 +26,20 @@ public class EmprunteurDTO {
     public void ajouterEmprunt(EmpruntDTO empruntDTO) {
         this.emprunts.add(empruntDTO);
         empruntDTO.setEmprunteurDTO(this);
+    }
+
+    @Override
+    public String toString() {
+        String description = String.format("Emprunteur: %s, Email: %s, Numéro de téléphone: %s\n",
+                getNom(), getEmail(), getNumTel());
+
+        if (emprunts != null && !emprunts.isEmpty()) {
+            description += "Emprunts:\n";
+            for (EmpruntDTO emprunt : emprunts) {
+                description += emprunt.toString();
+            }
+        }
+
+        return description;
     }
 }

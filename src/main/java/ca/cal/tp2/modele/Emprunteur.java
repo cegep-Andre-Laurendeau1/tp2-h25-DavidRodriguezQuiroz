@@ -38,10 +38,6 @@ public class Emprunteur extends Utilisateur {
         emprunt.setEmprunteur(this);
     }
 
-    public void enleverEmprunt() {
-
-    }
-
     public static EmprunteurDTO toDTO(Emprunteur emprunteur) {
         if (emprunteur == null) {
             return null;

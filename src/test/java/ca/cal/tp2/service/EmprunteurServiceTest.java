@@ -143,9 +143,6 @@ class EmprunteurServiceTest {
         livreDTO = preposeService.enregistrerLivre(livreDTO);
         cdDTO = preposeService.enregistrerCD(cdDTO);
 
-        System.out.println(livreDTO.getId());
-        System.out.println(cdDTO.getId());
-
         emprunteurDTO = emprunteurService.emprunterDocument(emprunteurDTO, livreDTO);
         emprunteurDTO = emprunteurService.emprunterDocument(emprunteurDTO, cdDTO);
 

@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Amande {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private double montant;
     private boolean status;
     private LocalDate dateCreation;

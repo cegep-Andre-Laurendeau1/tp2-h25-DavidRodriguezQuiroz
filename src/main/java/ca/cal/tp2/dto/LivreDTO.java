@@ -14,7 +14,7 @@ public class LivreDTO extends DocumentDTO {
     private int anneePublication;
     private int nbPages;
 
-    public LivreDTO(Integer id, String titre, int nombreExemplaires, String ISBN,
+    public LivreDTO(Long id, String titre, int nombreExemplaires, String ISBN,
                  String auteur, String editeur, int anneePublication, int nbPages) {
         super(id, titre, nombreExemplaires);
         this.ISBN = ISBN;

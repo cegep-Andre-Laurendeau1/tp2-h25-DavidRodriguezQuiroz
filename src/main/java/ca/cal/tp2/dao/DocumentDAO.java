@@ -6,11 +6,11 @@ import ca.cal.tp2.modele.EmpruntDocument;
 import java.util.List;
 
 public interface DocumentDAO<T> {
-    void enregistrer(T document);
+    T enregistrer(T document);
 
     List<T> rechercher(T document);
 
-    T rechercher(int id);
+    T rechercher(long id);
 
-    T rechercherPar(int empDocId);
+    T rechercherPar(long empDocId);
 }

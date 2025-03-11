@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public abstract class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String titre;
     private int nombreExemplaires;
 

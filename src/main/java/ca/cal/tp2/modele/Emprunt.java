@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Emprunt {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @OneToOne(mappedBy = "emprunt", cascade = CascadeType.ALL)
     private EmpruntDocument empruntDocument;
     private LocalDate dateEmprunt;

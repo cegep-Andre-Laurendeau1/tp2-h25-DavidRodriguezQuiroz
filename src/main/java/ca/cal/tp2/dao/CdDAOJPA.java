@@ -25,13 +25,16 @@ public class CdDAOJPA extends DocumentDAOJPA<CD>{
         statements.add((cd.getArtiste() == null ? "" : " c.artiste = :artiste"));
 
         String sql = "SELECT c FROM CD c WHERE" + formatterSQL(statements);
+        System.out.println(sql);
         return sql;
     }
 
     @Override
     protected void setParams(TypedQuery<CD> query, CD cd) {
-        query.setParameter("titre", "%" + cd.getTitre() + "%");
-        query.setParameter("artiste", cd.getArtiste());
+        if (cd.getTitre() != null)
+            query.setParameter("titre", "%" + cd.getTitre() + "%");
+        if (cd.getArtiste() != null)
+            query.setParameter("artiste", cd.getArtiste());
     }
 
     @Override

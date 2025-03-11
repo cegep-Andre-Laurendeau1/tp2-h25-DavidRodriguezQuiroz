@@ -23,7 +23,7 @@ public class Emprunteur extends Utilisateur {
     @OneToMany(mappedBy = "emprunteur")
     private List<Amande> amandes;
 
-    public Emprunteur(Integer id, String nom, String email, String numTel,
+    public Emprunteur(Long id, String nom, String email, String numTel,
                       List<Emprunt> emprunts, List<Amande> amandes) {
         super(id, nom, email, numTel);
         this.emprunts = emprunts;
@@ -31,8 +31,15 @@ public class Emprunteur extends Utilisateur {
     }
 
     public void ajouterEmprunt(Emprunt emprunt) {
+        if (this.emprunts == null) {
+            this.emprunts = new ArrayList<>();
+        }
         this.emprunts.add(emprunt);
         emprunt.setEmprunteur(this);
+    }
+
+    public void enleverEmprunt() {
+
     }
 
     public static EmprunteurDTO toDTO(Emprunteur emprunteur) {

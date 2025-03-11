@@ -20,7 +20,7 @@ public class CdDTO extends DocumentDTO {
         this.duree = duree;
     }
 
-    public CdDTO(Integer id, String titre, int nombreExemplaires,
+    public CdDTO(Long id, String titre, int nombreExemplaires,
               String artiste, String genre, int duree) {
         super(id, titre, nombreExemplaires);
         this.artiste = artiste;

@@ -27,7 +27,7 @@ public class DVD extends Document {
         this.note = note;
     }
 
-    public DVD(Integer id, String titre, int nombreExemplaires,
+    public DVD(Long id, String titre, int nombreExemplaires,
                String directeur, int duree, String note) {
         super(id, titre, nombreExemplaires);
         this.directeur = directeur;

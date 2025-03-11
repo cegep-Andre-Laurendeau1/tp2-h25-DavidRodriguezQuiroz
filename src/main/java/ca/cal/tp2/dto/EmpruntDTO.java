@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class EmpruntDTO {
-    private Integer id;
+    private Long id;
     private EmpruntDocumentDTO empruntDocumentDTO;
     private LocalDate dateEmprunt;
     private String status;

@@ -8,13 +8,13 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class EmprunteurDTO {
-    private Integer id;
+    private Long id;
     private String nom;
     private String email;
     private String numTel;
     private List<EmpruntDTO> emprunts;
 
-    public EmprunteurDTO(Integer id, String nom, String email, String numTel, List<EmpruntDTO> emprunts) {
+    public EmprunteurDTO(Long id, String nom, String email, String numTel, List<EmpruntDTO> emprunts) {
         this.id = id;
         this.nom = nom;
         this.email = email;

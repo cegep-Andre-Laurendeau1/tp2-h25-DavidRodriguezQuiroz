@@ -15,15 +15,18 @@ public class PreposeService {
     private DocumentDAO<DVD> dvdDAO;
     private DocumentDAO<CD> cdDAO;
 
-    public void enregistrerLivre(LivreDTO livreDTO) {
-        livreDAO.enregistrer(Livre.toModele(livreDTO));
+    public LivreDTO enregistrerLivre(LivreDTO livreDTO) {
+        Livre livre = Livre.toModele(livreDTO);
+        return Livre.toDTO(livreDAO.enregistrer(livre));
     }
 
-    public void enregistrerCD(CdDTO cdDTO) {
-        cdDAO.enregistrer(CD.toModele(cdDTO));
+    public CdDTO enregistrerCD(CdDTO cdDTO) {
+        CD cd = CD.toModele(cdDTO);
+        return CD.toDTO(cdDAO.enregistrer(cd));
     }
 
-    public void enregistrerDVD(DvdDTO dvdDTO) {
-        dvdDAO.enregistrer(DVD.toModele(dvdDTO));
+    public DvdDTO enregistrerDVD(DvdDTO dvdDTO) {
+        DVD dvd = DVD.toModele(dvdDTO);
+        return DVD.toDTO(dvdDAO.enregistrer(dvd));
     }
 }

@@ -19,11 +19,11 @@ public class EmpruntDAOJPA extends GenericDAO<Emprunt> implements EmpruntDAO{
     }
 
     @Override
-    public void enregistrer(Emprunt emprunt) {
-        Document document = emprunt.getEmpruntDocument().getDocument();
+    public Emprunt enregistrer(Emprunt emprunt) {
+        if (!exemplaireDisponible(emprunt.getEmpruntDocument().getDocument()))
+            return null;
 
-        if (exemplaireDisponible(document))
-            super.enregistrer(emprunt);
+        return super.enregistrer(emprunt);
     }
 
     private boolean exemplaireDisponible(Document document) {

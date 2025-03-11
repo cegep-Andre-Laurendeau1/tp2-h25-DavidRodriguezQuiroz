@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class EmpruntDocumentDTO  {
-    private Integer id;
+    private Long id;
     private DocumentDTO documentDTO;
     private EmpruntDTO empruntDTO;
     private LocalDate dateRetourActuelle;

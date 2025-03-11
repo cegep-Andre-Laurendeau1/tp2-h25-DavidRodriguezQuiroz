@@ -20,7 +20,7 @@ public class DvdDTO extends DocumentDTO {
         this.note = note;
     }
 
-    public DvdDTO(Integer id, String titre, int nombreExemplaires,
+    public DvdDTO(Long id, String titre, int nombreExemplaires,
                String directeur, int duree, String note) {
         super(id, titre, nombreExemplaires);
         this.directeur = directeur;

@@ -22,6 +22,7 @@ public class EmpruntDocumentDAOJPA implements EmpruntDocumentDAO{
         String sql = "SELECT empDoc FROM EmpruntDocument empDoc WHERE empDoc.emprunt = :emprunt";
 
         TypedQuery<EmpruntDocument> query = entityManager.createQuery(sql, EmpruntDocument.class);
+        query.setParameter("emprunt", emprunt);
 
         EmpruntDocument empruntDocument = query.getSingleResult();
 

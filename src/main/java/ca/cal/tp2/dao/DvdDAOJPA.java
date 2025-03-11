@@ -31,8 +31,10 @@ public class DvdDAOJPA extends DocumentDAOJPA<DVD>{
 
     @Override
     protected void setParams(TypedQuery<DVD> query, DVD dvd) {
-        query.setParameter("titre", "%" + dvd.getTitre() + "%");
-        query.setParameter("directeur", dvd.getDirecteur());
+        if (dvd.getTitre() != null)
+            query.setParameter("titre", "%" + dvd.getTitre() + "%");
+        if (dvd.getDirecteur() != null)
+            query.setParameter("directeur", dvd.getDirecteur());
     }
 
     @Override

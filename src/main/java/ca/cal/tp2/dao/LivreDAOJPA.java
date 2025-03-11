@@ -31,9 +31,12 @@ public class LivreDAOJPA extends DocumentDAOJPA<Livre> {
 
     @Override
     protected void setParams(TypedQuery<Livre> query, Livre livre) {
-        query.setParameter("titre", "%" + livre.getTitre() + "%");
-        query.setParameter("auteur", livre.getAuteur());
-        query.setParameter("annee", livre.getAnneePublication());
+        if (livre.getTitre() != null)
+            query.setParameter("titre", "%" + livre.getTitre() + "%");
+        if (livre.getAuteur() != null)
+            query.setParameter("auteur", livre.getAuteur());
+        if (livre.getAnneePublication() != -1)
+            query.setParameter("annee", livre.getAnneePublication());
     }
 
     @Override

@@ -4,6 +4,7 @@ import ca.cal.tp2.LimiteSemaineEmprunt;
 import ca.cal.tp2.dao.DocumentDAO;
 import ca.cal.tp2.dao.EmpruntDAO;
 import ca.cal.tp2.dao.EmprunteurDAO;
+import ca.cal.tp2.dao.LivreDAOJPA;
 import ca.cal.tp2.dto.*;
 import ca.cal.tp2.modele.*;
 import lombok.AllArgsConstructor;
@@ -19,11 +20,12 @@ public class EmprunteurService {
     private DocumentDAO<DVD> dvdDAO;
     private DocumentDAO<CD> cdDAO;
 
-    public void enregistrer(Emprunteur emprunteur) {
-        emprunteurDAO.enregistrer(emprunteur);
+    public EmprunteurDTO enregistrer(EmprunteurDTO emprunteurDTO) {
+        Emprunteur emprunteur = Emprunteur.toModele(emprunteurDTO);
+        return Emprunteur.toDTO(emprunteurDAO.enregistrer(emprunteur));
     }
 
-    public EmprunteurDTO rechercher(int id) {
+    public EmprunteurDTO rechercherEmprunteur(long id) {
         Emprunteur emprunteur = emprunteurDAO.rechercher(id);
 
         if (emprunteur != null)
@@ -47,10 +49,10 @@ public class EmprunteurService {
         return DVD.toDTOs(dvds);
     }
 
-    public void emprunterDocument(EmprunteurDTO emprunteurDTO, DocumentDTO documentDTO) {
-        Emprunteur emprunteur = Emprunteur.toModele(emprunteurDTO);
-
+    public EmprunteurDTO emprunterDocument(EmprunteurDTO emprunteurDTO, DocumentDTO documentDTO) {
         Document document = Document.toModele(documentDTO);
+
+        Emprunteur emprunteur = Emprunteur.toModele(emprunteurDTO);
 
         Emprunt emprunt = new Emprunt();
 
@@ -61,10 +63,12 @@ public class EmprunteurService {
 
         emprunt.setEmpruntDocument(empruntDocument);
         emprunt.setDateEmprunt(LocalDate.now());
+        emprunt.setEmprunteur(emprunteur);
 
-        emprunteur.ajouterEmprunt(emprunt);
+        if (this.empruntDAO.enregistrer(emprunt) != null)
+            emprunteur.ajouterEmprunt(emprunt);
 
-        this.empruntDAO.enregistrer(emprunt);
+        return Emprunteur.toDTO(emprunteur);
     }
 
 }

@@ -21,7 +21,7 @@ public class Livre extends Document {
     private int anneePublication;
     private int nbPages;
 
-    public Livre(Integer id, String titre, int nombreExemplaires, String ISBN,
+    public Livre(Long id, String titre, int nombreExemplaires, String ISBN,
                  String auteur, String editeur, int anneePublication, int nbPages) {
         super(id, titre, nombreExemplaires);
         this.ISBN = ISBN;

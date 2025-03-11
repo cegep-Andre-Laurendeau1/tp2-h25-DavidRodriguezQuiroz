@@ -29,12 +29,13 @@ public abstract class DocumentDAOJPA<T> extends GenericDAO<T> implements Documen
     protected abstract void setParams(TypedQuery<T> query, T document);
 
     @Override
-    public T rechercherPar(int empDocId) {
+    public T rechercherPar(long empDocId) {
         EntityManager entityManager = DBManager.getEntityManager();
 
-        String sql = "SELECT d FROM " + getNomTable() + " d WHERE d.id = :empDocId";
+        String sql = "SELECT d FROM " + getNomTable() + " d INNER JOIN EmpruntDocument e ON e.document.id = d.id WHERE e.id = :empDocId";
 
         TypedQuery<T> query = entityManager.createQuery(sql, getClassType());
+        query.setParameter("empDocId", empDocId);
 
         T document = query.getSingleResult();
 

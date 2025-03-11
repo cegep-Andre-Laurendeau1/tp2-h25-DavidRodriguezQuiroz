@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class DocumentDTO {
-    private Integer id;
+    private Long id;
     private String titre;
     private int nombreExemplaires;
 
